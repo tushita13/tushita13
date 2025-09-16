@@ -1,0 +1,654 @@
+#include <iostream>
+using namespace std;
+
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+
+int binarySearch(int arr[], int n, int key) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter " << n << " elements in sorted order: \n";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int result1 = linearSearch(arr, n, key);
+    if (result1 != -1)
+        cout << "Linear Search: Element found at index " << result1 << endl;
+    else
+        cout << "Linear Search: Element not found!\n";
+
+    int result2 = binarySearch(arr, n, key);
+    if (result2 != -1)
+        cout << "Binary Search: Element found at index " << result2 << endl;
+    else
+        cout << "Binary Search: Element not found!\n";
+
+    return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key)
+            return i;
+    }
+    return -1;
+}
+
+int binarySearch(int arr[], int n, int key) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == key)
+            return mid;
+        else if (arr[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+
+int main() {
+    int n, key;
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter " << n << " elements in sorted order:\n";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cout << "Enter element to search: ";
+    cin >> key;
+
+    int result1 = linearSearch(arr, n, key);
+    if (result1 != -1)
+        cout << "Linear Search: Element found at index " << result1 << endl;
+    else
+        cout << "Linear Search: Element not found\n";
+
+    int result2 = binarySearch(arr, n, key);
+    if (result2 != -1)
+        cout << "Binary Search: Element found at index " << result2 << endl;
+    else
+        cout << "Binary Search: Element not found\n";
+
+    return 0;
+}
+
+
+
+2
+
+#include <iostream>
+using namespace std;
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Original array: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    bubbleSort(arr, n);
+
+    cout << "Sorted array: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    return 0;
+}
+
+3
+#include <iostream>
+using namespace std;
+
+int findMissingLinear(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if (arr[i] != i + 1)
+            return i + 1;
+    }
+    return n;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 5, 6, 7}; 
+    int n = 7;
+
+    cout << "Missing number (Linear): " << findMissingLinear(arr, n) << endl;
+
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int findMissingBinary(int arr[], int n) {
+    int low = 0, high = n - 2;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == mid + 1)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return low + 1;
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 5, 6, 7};
+    int n = 7;
+
+    cout << "Missing number (Binary Search): " << findMissingBinary(arr, n) << endl;
+
+    return 0;
+}
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str1[100], str2[100];
+    cout << "Enter first string: ";
+    cin >> str1;
+    cout << "Enter second string: ";
+    cin >> str2;
+    strcat(str1, str2);
+    cout << "Concatenated string: " << str1 << endl;
+    return 0;
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str[100], result[100];
+    cout << "Enter a string: ";
+    cin >> str;
+    int j = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        char ch = tolower(str[i]);
+        if (ch!='a' && ch!='e' && ch!='i' && ch!='o' && ch!='u')
+            result[j++] = str[i];
+    }
+    result[j] = '\0';
+    cout << "String without vowels: " << result << endl;
+    return 0;
+}
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of strings: ";
+    cin >> n;
+    char arr[50][100];
+    cout << "Enter strings:\n";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (strcmp(arr[i], arr[j]) > 0) {
+                char temp[100];
+                strcpy(temp, arr[i]);
+                strcpy(arr[i], arr[j]);
+                strcpy(arr[j], temp);
+            }
+        }
+    }
+    cout << "Strings in alphabetical order:\n";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << endl;
+    return 0;
+}
+
+
+#include <iostream>
+#include <cctype>
+using namespace std;
+
+int main() {
+    char ch;
+    cout << "Enter uppercase character: ";
+    cin >> ch;
+    cout << "Lowercase: " << (char)tolower(ch) << endl;
+    return 0;
+}
+
+) Space required to store any two-dimensional array is 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜ƒ 𝑟𝑜𝑤𝑠 × 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜ƒ
+𝑐𝑜𝑙𝑢𝑚𝑛𝑠. Assuming an array is used to store elements of the following matrices,
+implement an efficient way that reduces the space requirement.
+(a) Diagonal Matrix.
+(b) Tri-diagonal Matrix.
+(c) Lower triangular Matrix.
+(d) Upper triangular Matrix.
+(e) Symmetric Matrix
+
+
+#include <iostream>
+using namespace std;
+
+class Diagonal {
+    int *arr, n;
+public:
+    Diagonal(int size) {
+        n = size;
+        arr = new int[n];
+        for (int i = 0; i < n; i++) arr[i] = 0;
+    }
+    void set(int i, int j, int x) {
+        if (i == j) arr[i - 1] = x;
+    }
+    int get(int i, int j) {
+        return (i == j) ? arr[i - 1] : 0;
+    }
+    void display() {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++)
+                cout << get(i, j) << " ";
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Diagonal d(4);
+    d.set(1, 1, 5);
+    d.set(2, 2, 8);
+    d.set(3, 3, 9);
+    d.set(4, 4, 12);
+    d.display();
+    return 0;
+}
+i == j → main diagonal → index = i-1
+
+i == j+1 → lower diagonal → index = n + i-2
+
+i+1 == j → upper diagonal → index = 2n + i-2
+
+Implementation is similar (store in 1D array of size 3n-2).
+
+(c) Lower Triangular Matrix
+
+Non-zero for i ≥ j.
+Space required = n(n+1)/2.
+
+Mapping:
+
+Index = i*(i-1)/2 + (j-1)
+
+
+(d) Upper Triangular Matrix
+
+Non-zero for i ≤ j.
+Space required = n(n+1)/2.
+
+Mapping:
+
+Index = j*(j-1)/2 + (i-1)
+
+(e) Symmetric Matrix
+
+For a symmetric matrix, a[i][j] = a[j][i].
+So only lower triangular (or upper) needs to be stored.
+Space required = n(n+1)/2.
+
+
+6) Write a program to implement the following operations on a Sparse Matrix,
+assuming the matrix is represented using a triplet.
+(a) Transpose of a matrix.
+(b) Addition of two matrices.
+(c) Multiplication of two matrices.
+
+#include <iostream>
+using namespace std;
+
+#define MAX 100
+
+// Print a triplet sparse matrix
+void printSparse(int sp[MAX][3]) {
+    int n = sp[0][2];
+    for (int i = 0; i <= n; i++)
+        cout << sp[i][0] << " " << sp[i][1] << " " << sp[i][2] << endl;
+}
+
+// Convert normal matrix to sparse matrix
+void toSparse(int mat[MAX][MAX], int r, int c, int sp[MAX][3]) {
+    int k = 1;
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            if (mat[i][j] != 0) {
+                sp[k][0] = i;
+                sp[k][1] = j;
+                sp[k][2] = mat[i][j];
+                k++;
+            }
+        }
+    }
+    sp[0][0] = r;
+    sp[0][1] = c;
+    sp[0][2] = k - 1;
+}
+
+// (a) Transpose
+void transpose(int sp[MAX][3], int res[MAX][3]) {
+    int r = sp[0][0], c = sp[0][1], n = sp[0][2];
+    res[0][0] = c;
+    res[0][1] = r;
+    res[0][2] = n;
+
+    int k = 1;
+    for (int col = 0; col < c; col++) {
+        for (int i = 1; i <= n; i++) {
+            if (sp[i][1] == col) {
+                res[k][0] = sp[i][1];
+                res[k][1] = sp[i][0];
+                res[k][2] = sp[i][2];
+                k++;
+            }
+        }
+    }
+}
+
+// (b) Addition
+void add(int sp1[MAX][3], int sp2[MAX][3], int res[MAX][3]) {
+    if (sp1[0][0] != sp2[0][0] || sp1[0][1] != sp2[0][1]) {
+        cout << "Addition not possible\n";
+        return;
+    }
+    int n1 = sp1[0][2], n2 = sp2[0][2];
+    int i = 1, j = 1, k = 1;
+
+    res[0][0] = sp1[0][0];
+    res[0][1] = sp1[0][1];
+
+    while (i <= n1 && j <= n2) {
+        if (sp1[i][0] < sp2[j][0] || (sp1[i][0] == sp2[j][0] && sp1[i][1] < sp2[j][1])) {
+            res[k][0] = sp1[i][0];
+            res[k][1] = sp1[i][1];
+            res[k][2] = sp1[i][2];
+            i++; k++;
+        }
+        else if (sp2[j][0] < sp1[i][0] || (sp2[j][0] == sp1[i][0] && sp2[j][1] < sp1[i][1])) {
+            res[k][0] = sp2[j][0];
+            res[k][1] = sp2[j][1];
+            res[k][2] = sp2[j][2];
+            j++; k++;
+        }
+        else {
+            res[k][0] = sp1[i][0];
+            res[k][1] = sp1[i][1];
+            res[k][2] = sp1[i][2] + sp2[j][2];
+            i++; j++; k++;
+        }
+    }
+    while (i <= n1) {
+        res[k][0] = sp1[i][0];
+        res[k][1] = sp1[i][1];
+        res[k][2] = sp1[i][2];
+        i++; k++;
+    }
+    while (j <= n2) {
+        res[k][0] = sp2[j][0];
+        res[k][1] = sp2[j][1];
+        res[k][2] = sp2[j][2];
+        j++; k++;
+    }
+    res[0][2] = k - 1;
+}
+
+// (c) Multiplication
+void multiply(int sp1[MAX][3], int sp2[MAX][3], int res[MAX][3]) {
+    if (sp1[0][1] != sp2[0][0]) {
+        cout << "Multiplication not possible\n";
+        return;
+    }
+    int temp[MAX][3];
+    transpose(sp2, temp);
+
+    int k = 1;
+    for (int i = 1; i <= sp1[0][2]; i++) {
+        for (int j = 1; j <= temp[0][2]; j++) {
+            if (sp1[i][1] == temp[j][1]) {
+                int row = sp1[i][0];
+                int col = temp[j][0];
+                int val = sp1[i][2] * temp[j][2];
+
+                int found = 0;
+                for (int x = 1; x < k; x++) {
+                    if (res[x][0] == row && res[x][1] == col) {
+                        res[x][2] += val;
+                        found = 1;
+                        break;
+                    }
+                }
+                if (!found) {
+                    res[k][0] = row;
+                    res[k][1] = col;
+                    res[k][2] = val;
+                    k++;
+                }
+            }
+        }
+    }
+    res[0][0] = sp1[0][0];
+    res[0][1] = sp2[0][1];
+    res[0][2] = k - 1;
+}
+
+// Driver
+int main() {
+    int mat1[MAX][MAX] = {
+        {0, 0, 3},
+        {4, 0, 0},
+        {0, 5, 0}
+    };
+    int mat2[MAX][MAX] = {
+        {0, 2, 0},
+        {0, 0, 7},
+        {6, 0, 0}
+    };
+
+    int sp1[MAX][3], sp2[MAX][3], res[MAX][3];
+
+    toSparse(mat1, 3, 3, sp1);
+    toSparse(mat2, 3, 3, sp2);
+
+    cout << "Sparse Matrix 1:\n"; printSparse(sp1);
+    cout << "Sparse Matrix 2:\n"; printSparse(sp2);
+
+    cout << "\nTranspose of Matrix 1:\n";
+    transpose(sp1, res); printSparse(res);
+
+    cout << "\nAddition of Matrices:\n";
+    add(sp1, sp2, res); printSparse(res);
+
+    cout << "\nMultiplication of Matrices:\n";
+    multiply(sp1, sp2, res); printSparse(res);
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+int countInversionsNaive(int arr[], int n) {
+    int count = 0;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] > arr[j])
+                count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int arr[] = {2, 4, 1, 3, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Number of inversions (Naive): " 
+         << countInversionsNaive(arr, n) << endl;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+long long mergeAndCount(int arr[], int l, int m, int r) {
+    int n1 = m - l + 1, n2 = r - m;
+    int L[n1], R[n2];
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++) R[j] = arr[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+    long long invCount = 0;
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j])
+            arr[k++] = L[i++];
+        else {
+            arr[k++] = R[j++];
+            invCount += (n1 - i);
+        }
+    }
+    while (i < n1) arr[k++] = L[i++];
+    while (j < n2) arr[k++] = R[j++];
+    return invCount;
+}
+
+long long mergeSortAndCount(int arr[], int l, int r) {
+    long long invCount = 0;
+    if (l < r) {
+        int m = (l + r) / 2;
+        invCount += mergeSortAndCount(arr, l, m);
+        invCount += mergeSortAndCount(arr, m + 1, r);
+        invCount += mergeAndCount(arr, l, m, r);
+    }
+    return invCount;
+}
+
+int main() {
+    int arr[] = {2, 4, 1, 3, 5};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Number of inversions (Efficient): " 
+         << mergeSortAndCount(arr, 0, n - 1) << endl;
+    return 0;
+}
+#include <iostream>
+using namespace std;
+
+int countDistinct(int arr[], int n) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        bool isDistinct = true;
+        for (int j = 0; j < i; j++) {
+            if (arr[i] == arr[j]) {
+                isDistinct = false;
+                break;
+            }
+        }
+        if (isDistinct) count++;
+    }
+    return count;
+}
+
+int main() {
+    int arr[] = {4, 5, 9, 4, 9, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Total distinct elements: " << countDistinct(arr, n) << endl;
+    return 0;
+}
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int countDistinct(int arr[], int n) {
+    sort(arr, arr + n);
+    int count = 1;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != arr[i - 1])
+            count++;
+    }
+    return count;
+}
+
+int main() {
+    int arr[] = {4, 5, 9, 4, 9, 8};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Total distinct elements: " << countDistinct(arr, n) << endl;
+    return 0;
+}
+
+}
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    char str[100];
+    cout << "Enter a string: ";
+    cin >> str;
+    int n = strlen(str);
+    for (int i = 0; i < n / 2; i++) {
+        char temp = str[i];
+        str[i] = str[n - i - 1];
+        str[n - i - 1] = temp;
+    }
+    cout << "Reversed string: " << str << endl;
+    return 0;
+}
