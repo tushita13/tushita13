@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void dfs(int n, vector<vector<int>>& adj, vector<bool>& vis) {
+    vis[n] = true;
+    cout << n << " ";
+    for(int x : adj[n])
+        if(!vis[x]) dfs(x, adj, vis);
+}
+
+int main() {
+    int V = 5;
+    vector<vector<int>> adj(V);
+    adj[0] = {1,2};
+    adj[1] = {0,3};
+    adj[2] = {0,4};
+    adj[3] = {1};
+    adj[4] = {2};
+
+    vector<bool> vis(V,false);
+    dfs(0, adj, vis);
+}
