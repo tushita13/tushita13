@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+struct DNode {
+    int data;
+    DNode *prev, *next;
+};
+
+int sizeDLL(DNode *head) {
+    int count = 0;
+    while (head) {
+        count++;
+        head = head->next;
+    }
+    return count;
+}
+
+int main() {
+    DNode *n1 = new DNode{10, NULL, NULL};
+    DNode *n2 = new DNode{20, n1, NULL};
+    n1->next = n2;
+    DNode *n3 = new DNode{30, n2, NULL};
+    n2->next = n3;
+
+    cout << sizeDLL(n1);
+}
