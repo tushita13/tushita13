@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void heapify(vector<int>& a, int n, int i, bool inc){
+    int m = i;
+    int l = 2*i + 1;
+    int r = 2*i + 2;
+    if(inc){
+        if(l < n && a[l] > a[m]) m = l;
+        if(r < n && a[r] > a[m]) m = r;
+    } else {
+        if(l < n && a[l] < a[m]) m = l;
+        if(r < n && a[r] < a[m]) m = r;
+    }
+    if(m != i){
+        swap(a[i], a[m]);
+        heapify(a, n, m, inc);
+    }
+}
+
+void heapSort(vector<int>& a, bool inc){
+    int n = a.size();
+    for(int i=n/2-1;i>=0;i--) heapify(a,n,i,inc);
+    for(int i=n-1;i>=0;i--){
+        swap(a[0], a[i]);
+        heapify(a, i, 0, inc);
+    }
+}
+
+int main(){
+    vector<int> a = {9,3,1,7,4,2,8};
+    
+    vector<int> incArr = a;
+    heapSort(incArr, true);
+    for(int x: incArr) cout<<x<<" ";
+    cout<<endl;
+
+    vector<int> decArr = a;
+    heapSort(decArr, false);
+    for(int x: decArr) cout<<x<<" ";
+}
