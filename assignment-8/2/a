@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data; Node* left; Node* right;
+    Node(int v){ data=v; left=right=NULL; }
+};
+
+Node* insertNode(Node* r,int v){
+    if(!r) return new Node(v);
+    if(v<r->data) r->left=insertNode(r->left,v);
+    else r->right=insertNode(r->right,v);
+    return r;
+}
+
+Node* searchRec(Node* r,int key){
+    if(!r || r->data==key) return r;
+    if(key<r->data) return searchRec(r->left,key);
+    return searchRec(r->right,key);
+}
+
+Node* searchNonRec(Node* r,int key){
+    while(r){
+        if(r->data==key) return r;
+        if(key<r->data) r=r->left;
+        else r=r->right;
+    }
+    return NULL;
+}
+
+int main(){
+    Node* root=NULL;
+    int a[]={50,30,70,20,40,60,80};
+    for(int x:a) root=insertNode(root,x);
+
+    cout << searchRec(root,40)->data << endl;
+    cout << searchNonRec(root,70)->data << endl;
+}
