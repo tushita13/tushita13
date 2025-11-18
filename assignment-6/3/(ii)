@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+struct CNode {
+    int data;
+    CNode *next;
+};
+
+int sizeCLL(CNode *last) {
+    if (!last) return 0;
+    CNode *head = last->next;
+    int count = 0;
+    CNode *t = head;
+
+    do {
+        count++;
+        t = t->next;
+    } while (t != head);
+
+    return count;
+}
+
+int main() {
+    CNode *n1 = new CNode{20, NULL};
+    CNode *n2 = new CNode{40, NULL};
+    CNode *n3 = new CNode{60, NULL};
+
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = n1;
+
+    cout << sizeCLL(n3);
+}
