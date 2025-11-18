@@ -1,1 +1,259 @@
-a
+#include <iostream>
+using namespace std;
+
+struct DNode {
+    int data;
+    DNode *prev, *next;
+};
+
+class DoublyList {
+    DNode *head;
+public:
+    DoublyList() { head = NULL; }
+
+    void insertBegin(int x) {
+        DNode *n = new DNode{x, NULL, head};
+        if (head) head->prev = n;
+        head = n;
+    }
+
+    void insertEnd(int x) {
+        DNode *n = new DNode{x, NULL, NULL};
+        if (!head) { head = n; return; }
+        DNode *t = head;
+        while (t->next) t = t->next;
+        t->next = n;
+        n->prev = t;
+    }
+
+    void insertAfter(int key, int x) {
+        DNode *t = head;
+        while (t && t->data != key) t = t->next;
+        if (!t) { cout << "Node not found\n"; return; }
+        DNode *n = new DNode{x, t, t->next};
+        if (t->next) t->next->prev = n;
+        t->next = n;
+    }
+
+    void insertBefore(int key, int x) {
+        if (!head) return;
+        if (head->data == key) { insertBegin(x); return; }
+        DNode *t = head;
+        while (t && t->data != key) t = t->next;
+        if (!t) { cout << "Node not found\n"; return; }
+        DNode *n = new DNode{x, t->prev, t};
+        t->prev->next = n;
+        t->prev = n;
+    }
+
+    void deleteNode(int key) {
+        if (!head) return;
+        DNode *t = head;
+        while (t && t->data != key) t = t->next;
+        if (!t) { cout << "Node not found\n"; return; }
+        if (t->prev) t->prev->next = t->next;
+        else head = t->next;
+        if (t->next) t->next->prev = t->prev;
+        delete t;
+    }
+
+    bool search(int key) {
+        DNode *t = head;
+        while (t) {
+            if (t->data == key) return true;
+            t = t->next;
+        }
+        return false;
+    }
+
+    void display() {
+        DNode *t = head;
+        while (t) {
+            cout << t->data << " ";
+            t = t->next;
+        }
+        cout << "\n";
+    }
+};
+
+struct CNode {
+    int data;
+    CNode *next;
+};
+
+class CircularList {
+    CNode *last;
+public:
+    CircularList() { last = NULL; }
+
+    void insertBegin(int x) {
+        CNode *n = new CNode{x, NULL};
+        if (!last) {
+            last = n;
+            last->next = last;
+        } else {
+            n->next = last->next;
+            last->next = n;
+        }
+    }
+
+    void insertEnd(int x) {
+        CNode *n = new CNode{x, NULL};
+        if (!last) {
+            last = n;
+            last->next = last;
+        } else {
+            n->next = last->next;
+            last->next = n;
+            last = n;
+        }
+    }
+
+    void insertAfter(int key, int x) {
+        if (!last) return;
+        CNode *t = last->next;
+        do {
+            if (t->data == key) {
+                CNode *n = new CNode{x, t->next};
+                t->next = n;
+                if (t == last) last = n;
+                return;
+            }
+            t = t->next;
+        } while (t != last->next);
+        cout << "Node not found\n";
+    }
+
+    void insertBefore(int key, int x) {
+        if (!last) return;
+        CNode *t = last->next;
+        CNode *prev = last;
+        do {
+            if (t->data == key) {
+                CNode *n = new CNode{x, t};
+                prev->next = n;
+                return;
+            }
+            prev = t;
+            t = t->next;
+        } while (t != last->next);
+        cout << "Node not found\n";
+    }
+
+    void deleteNode(int key) {
+        if (!last) return;
+        CNode *t = last->next;
+        CNode *prev = last;
+        do {
+            if (t->data == key) {
+                if (t == last && t->next == last) {
+                    delete t;
+                    last = NULL;
+                    return;
+                }
+                prev->next = t->next;
+                if (t == last) last = prev;
+                delete t;
+                return;
+            }
+            prev = t;
+            t = t->next;
+        } while (t != last->next);
+        cout << "Node not found\n";
+    }
+
+    bool search(int key) {
+        if (!last) return false;
+        CNode *t = last->next;
+        do {
+            if (t->data == key) return true;
+            t = t->next;
+        } while (t != last->next);
+        return false;
+    }
+
+    void display() {
+        if (!last) { cout << "Empty\n"; return; }
+        CNode *t = last->next;
+        do {
+            cout << t->data << " ";
+            t = t->next;
+        } while (t != last->next);
+        cout << "\n";
+    }
+};
+
+int main() {
+    DoublyList dll;
+    CircularList cll;
+    int choice, listType;
+    int x, key;
+
+    while (true) {
+        cout << "\nChoose List Type:\n";
+        cout << "1. Doubly Linked List\n2. Circular Linked List\n3. Exit\n";
+        cin >> listType;
+
+        if (listType == 3) break;
+
+        cout << "\nMENU:\n";
+        cout << "1. Insert at Beginning\n";
+        cout << "2. Insert at End\n";
+        cout << "3. Insert After a Node\n";
+        cout << "4. Insert Before a Node\n";
+        cout << "5. Delete a Node\n";
+        cout << "6. Search a Node\n";
+        cout << "7. Display List\n";
+        cout << "8. Back\n";
+
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cin >> x;
+            if (listType == 1) dll.insertBegin(x);
+            else cll.insertBegin(x);
+            break;
+
+        case 2:
+            cin >> x;
+            if (listType == 1) dll.insertEnd(x);
+            else cll.insertEnd(x);
+            break;
+
+        case 3:
+            cin >> key >> x;
+            if (listType == 1) dll.insertAfter(key, x);
+            else cll.insertAfter(key, x);
+            break;
+
+        case 4:
+            cin >> key >> x;
+            if (listType == 1) dll.insertBefore(key, x);
+            else cll.insertBefore(key, x);
+            break;
+
+        case 5:
+            cin >> key;
+            if (listType == 1) dll.deleteNode(key);
+            else cll.deleteNode(key);
+            break;
+
+        case 6:
+            cin >> key;
+            cout << ((listType == 1) ? dll.search(key) : cll.search(key)
+                ? "Found\n" : "Not Found\n");
+            break;
+
+        case 7:
+            if (listType == 1) dll.display();
+            else cll.display();
+            break;
+
+        case 8:
+            break;
+        }
+    }
+
+    return 0;
+}
